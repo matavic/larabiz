@@ -10,6 +10,11 @@ class ListingController extends Controller
 
     protected $redirectTo = '/dashboard';
 
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +22,8 @@ class ListingController extends Controller
      */
     public function index()
     {
-        //
+        $listings = Listing::orderBy('created_at', 'desc')->get();
+        return view('listings.index')->with('listings', $listings);
     }
 
     /**
@@ -66,7 +72,10 @@ class ListingController extends Controller
      */
     public function show($id)
     {
-        //
+        $listing = Listing::findOrFail($id);
+
+        return view('listings.show')->with('listing', $listing);
+
     }
 
     /**
