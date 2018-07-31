@@ -29,7 +29,7 @@
                                     <td>  
                                         {{$listing->name}}
                                     </td>
-                                    <td></td>
+                                <td><a href="/listings/{{$listing->id}}/edit" class="btn btn-warning float-right">Edit</a></td>
                                     <td></td>
                                 </tr>    
                             @endforeach
