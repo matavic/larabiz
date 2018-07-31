@@ -30,7 +30,13 @@
                                         {{$listing->name}}
                                     </td>
                                 <td><a href="/listings/{{$listing->id}}/edit" class="btn btn-warning float-right">Edit</a></td>
-                                    <td></td>
+                                    <td>
+                                        <form action="{{action('ListingController@destroy', ['id' => $listing->id])}}" method='POST' class="float-left" onsubmit="confirm('Are you sure?')">
+                                        @method('DELETE')
+                                        @csrf
+                                        <span><input type="submit" value="Delete" class='btn btn-danger'></span>
+                                        </form>
+                                    </td>
                                 </tr>    
                             @endforeach
                         </table>
